@@ -446,7 +446,7 @@ VIEW;
 			elseif (static::$scaffolding === false)
 			{
 				// Increment the name of this
-				$migration_name = \Str::increment(substr($file_name, 4), 2);
+				$migration_name = \Str::increment(substr($file_name, 15), 2);
 			}
 		}
 
@@ -781,10 +781,7 @@ HELP;
 
 	private static function _find_migration_number()
 	{
-		$glob = glob(APPPATH .'migrations/*_*.php');
-		list($last) = explode('_', basename(end($glob)));
-
-		return str_pad($last + 1, 3, '0', STR_PAD_LEFT);
+		return date('YmdHis');
 	}
 
 	private static function _update_current_version($version)
